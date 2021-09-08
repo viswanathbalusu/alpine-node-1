@@ -34,7 +34,7 @@ RUN curl -sfSLO https://nodejs.org/dist/${VERSION}/node-${VERSION}.tar.xz && \
   tar -xf node-${VERSION}.tar.xz && \
   cd node-${VERSION} && \
   ./configure --prefix=/usr ${CONFIG_FLAGS} && \
-  make -j2 && \
+  make -j8 && \
   make install
 
 RUN if [ -z "$CONFIG_FLAGS" ]; then \
