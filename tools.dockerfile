@@ -24,8 +24,8 @@ COPY --from=0 /usr/include/node /usr/include/node
 COPY --from=0 /usr/share/systemtap/tapset/node.stp /usr/share/systemtap/tapset/
 
 RUN apk upgrade --no-cache -U && \
-  apk add --no-cache curl gnupg libstdc++
-RUN /tmp/node_modules/npm/bin/npm-cli.js install -g npm@${NPM_VERSION} && \
+  apk add --no-cache curl gnupg libstdc++ && \
+  /tmp/node_modules/npm/bin/npm-cli.js install -g npm@${NPM_VERSION} && \
   find /usr/lib/node_modules/npm -type d \( -name test -o -name .bin \) | xargs rm -rf && \
   curl -sfSL -O https://github.com/yarnpkg/yarn/releases/download/${YARN_VERSION}/yarn-${YARN_VERSION}.tar.gz -O https://github.com/yarnpkg/yarn/releases/download/${YARN_VERSION}/yarn-${YARN_VERSION}.tar.gz.asc && \
   rm -rf /usr/local/share/yarn && \
